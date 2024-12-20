@@ -8,21 +8,9 @@
   (if window-system
       (progn
 	;; Set default fonts to monospace-10
-	(set-default-font "monospace-10")
-	
-	;; Japanese characters
-	(set-fontset-font (frame-parameter nil 'font)
-			  'japanese-jisx0208
-			  '("WenQuanYi Micro Hei Mono" . "unicode-bmp"))
-	;; Han(Kanji) characters
-	(set-fontset-font (frame-parameter nil 'font)
-			  'han
-			  '("WenQuanYi Micro Hei Mono" . "unicode-bmp"))
-	;; CJK miscs
-	(set-fontset-font (frame-parameter nil 'font)
-			  'cjk-misc
-			  '("WenQuanYi Micro Hei Mono" . "unicode-bmp"))
-	)))
+	(set-frame-font "monospace-10")
+	;; Fonts speedbar, ediff etc
+	(add-to-list 'default-frame-alist '(font . "monospace-10")))))
 
 ;;; ======================================================================= ;;;
 ;;; COLORS
@@ -54,14 +42,11 @@
         ;; whatnot), then divide by the height of a char to
         ;; get the height we want
         (add-to-list 'default-frame-alist
-                     (cons 'height (/ (- (x-display-pixel-height) 150)
+                     (cons 'height (/ (- (x-display-pixel-height) 350)
                                       (frame-char-height)))))))
 
 (set-gui-fonts)
 (set-color-theme)
 (set-frame-size-according-to-resolution)
-
-;; Fonts speedbar, ediff etc
-(add-to-list 'default-frame-alist '(font . "monospace-10"))
 
 (provide 'pemacs-apperance)
